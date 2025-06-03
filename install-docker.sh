@@ -3,8 +3,6 @@
 # Simple Docker Installation Script for Ubuntu/Debian
 
 echo "Starting Docker installation..."
-for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt remove $pkg; done
-
 
 # Add Docker's official GPG key:
 sudo apt update

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -e
 echo "Installing essential packages..."
 sudo apt update
 sudo apt install -y build-essential git curl wget zsh

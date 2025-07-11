@@ -1,14 +1,15 @@
 #!/bin/bash
 
-echo "Installing essential packages..."
-sudo apt update
-sudo apt install -y build-essential git curl wget zsh
-
 # Check if script is run with sudo
 if [[ $EUID -eq 0 ]]; then
    echo "Please run this script without sudo. The script will ask for sudo permissions when needed."
    exit 1
 fi
+
+echo "Installing essential packages..."
+sudo apt update
+sudo apt install -y build-essential git curl wget zsh tmux
+wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
 
 # Check if running in WSL
 if grep -qi microsoft /proc/version; then

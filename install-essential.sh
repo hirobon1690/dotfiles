@@ -4,14 +4,29 @@ echo "Installing essential packages..."
 sudo apt update
 sudo apt install -y build-essential git curl wget zsh
 
-echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
-sudo apt update
-sudo apt install -y code
+# Check if script is run with sudo
+if [[ $EUID -eq 0 ]]; then
+   echo "Please run this script without sudo. The script will ask for sudo permissions when needed."
+   exit 1
+fi
 
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrom-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/googlechrom-keyring.gpg
-sudo apt update
-sudo apt install -y google-chrome-stable
+# Check if running in WSL
+if grep -qi microsoft /proc/version; then
+    echo "WSL environment detected. Configuring WSL..."
+    echo -e "[interop]\nappendWindowsPath = false" | sudo tee -a /etc/wsl.conf
+    echo "WSL configuration added. Please restart WSL to apply changes."
+else
+    echo "Regular Linux environment detected. Installing desktop applications..."
+    
+    echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
+    sudo apt update
+    sudo apt install -y code
+
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrom-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+    curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/googlechrom-keyring.gpg
+    sudo apt update
+    sudo apt install -y google-chrome-stable
+fi
 
 type -p curl >/dev/null || sudo apt install curl -y
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \

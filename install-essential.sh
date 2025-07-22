@@ -10,7 +10,6 @@ echo "Installing essential packages..."
 sudo apt update
 sudo apt install -y build-essential git curl wget zsh tmux terminator unzip
 wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
-
 # Check if running in WSL
 if grep -qi microsoft /proc/version; then
     echo "WSL environment detected. Configuring WSL..."
@@ -36,6 +35,9 @@ else
     sudo cp ./JetBrainsMono/JetBrainsMonoNerdFont-Bold.ttf /usr/share/fonts/
     rm -rf ./JetBrainsMono
     rm ./JetBrainsMono.zip
+
+    
+    wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/terminator/config -O ./.config/terminator/config
     
     LANG=C xdg-user-dirs-update --force
 fi

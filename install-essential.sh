@@ -36,7 +36,7 @@ else
     rm -rf ./JetBrainsMono
     rm ./JetBrainsMono.zip
 
-    
+    mkdir -p ./.config/terminator
     wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/terminator/config -O ./.config/terminator/config
     
     LANG=C xdg-user-dirs-update --force

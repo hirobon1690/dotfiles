@@ -52,6 +52,9 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && sudo apt update \
 && sudo apt install gh -y
 
+git config --global user.name hirobon1690
+git config --global user.email 58695125+hirobon1690@users.noreply.github.com
+
 echo "Setting zsh as default shell..."
 sudo chsh -s $(which zsh) $USER
 

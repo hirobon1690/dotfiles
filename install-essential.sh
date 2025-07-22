@@ -8,7 +8,7 @@ fi
 
 echo "Installing essential packages..."
 sudo apt update
-sudo apt install -y build-essential git curl wget zsh tmux
+sudo apt install -y build-essential git curl wget zsh tmux terminator
 wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
 
 # Check if running in WSL
@@ -19,7 +19,8 @@ if grep -qi microsoft /proc/version; then
 else
     echo "Regular Linux environment detected. Installing desktop applications..."
     
-    echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
+    wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
     sudo apt update
     sudo apt install -y code
 

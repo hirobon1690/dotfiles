@@ -45,6 +45,12 @@ fi
 sudo add-apt-repository ppa:appimagelauncher-team/stable -y
 sudo apt install -y appimagelauncher
 
+sudo apt install -y nodejs npm
+sudo npm -g install n
+sudo n stable
+sudo apt purge nodejs npm
+sudo apt autoremove
+
 type -p curl >/dev/null || sudo apt install curl -y
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
 && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \

@@ -29,7 +29,7 @@ else
     sudo apt update
     sudo apt install -y google-chrome-stable
 
-    LANG=C xdg-user-dirs-update
+    LANG=C xdg-user-dirs-update --foece
 fi
 
 type -p curl >/dev/null || sudo apt install curl -y

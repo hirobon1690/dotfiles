@@ -48,8 +48,8 @@ sudo apt install -y appimagelauncher
 sudo apt install -y nodejs npm
 sudo npm -g install n
 sudo n stable
-sudo apt purge nodejs npm
-sudo apt autoremove
+sudo apt purge -y nodejs npm
+sudo apt autoremove -y
 
 type -p curl >/dev/null || sudo apt install curl -y
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \

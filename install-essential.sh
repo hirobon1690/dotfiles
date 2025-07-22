@@ -28,6 +28,8 @@ else
     curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/googlechrom-keyring.gpg
     sudo apt update
     sudo apt install -y google-chrome-stable
+
+    LANG=C xdg-user-dirs-update
 fi
 
 type -p curl >/dev/null || sudo apt install curl -y

@@ -8,7 +8,7 @@ fi
 
 echo "Installing essential packages..."
 sudo apt update
-sudo apt install -y build-essential git curl wget zsh tmux terminator
+sudo apt install -y build-essential git curl wget zsh tmux terminator unzip
 wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
 
 # Check if running in WSL
@@ -29,6 +29,14 @@ else
     sudo apt update
     sudo apt install -y google-chrome-stable
 
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+    mkdir JetBrainsMono
+    unzip ./JetBrainsMono.zip -d ./JetBrainsMono
+    sudo cp ./JetBrainsMono/JetBrainsMonoNerdFont-Regular.ttf /usr/share/fonts/
+    sudo cp ./JetBrainsMono/JetBrainsMonoNerdFont-Bold.ttf /usr/share/fonts/
+    rm -rf ./JetBrainsMono
+    rm ./JetBrainsMono.zip
+    
     LANG=C xdg-user-dirs-update --force
 fi
 

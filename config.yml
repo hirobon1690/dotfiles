@@ -1,0 +1,5 @@
+modmap:
+  - name: JP-keys
+    remap:
+      Alt_R: Muhenkan    # 右Alt → 無変換
+      COMPOSE: Henkan       # Menu → 変換

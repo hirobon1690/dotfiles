@@ -39,6 +39,16 @@ else
     sudo cp ./JetBrainsMono/JetBrainsMonoNerdFont-Bold.ttf /usr/share/fonts/
     rm -rf ./JetBrainsMono
     rm ./JetBrainsMono.zip
+
+    wget https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip
+    mkdir Inter
+    unzip ./Inter-4.1.zip -d ./Inter
+    sudo cp ./Inter/extras/ttf/Inter-Bold.ttf /usr/share/fonts/
+    sudo cp ./Inter/extras/ttf/Inter-Regular.ttf /usr/share/fonts/
+    sudo cp ./Inter/extras/ttf/Inter-BoldItalic.ttf /usr/share/fonts/
+    sudo cp ./Inter/extras/ttf/Inter-Italic.ttf /usr/share/fonts/
+    rm -rf ./Inter
+    rm ./Inter-4.1.zip
     
     LANG=C xdg-user-dirs-update --force
     cp -al ~/デスクトップ/* ~/Desktop/

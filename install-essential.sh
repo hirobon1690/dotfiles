@@ -1,5 +1,5 @@
 #!/bin/bash
-
+export DEBIAN_FRONTEND="noninteractive"
 # Check if script is run with sudo
 if [[ $EUID -eq 0 ]]; then
    echo "Please run this script without sudo. The script will ask for sudo permissions when needed."
@@ -8,8 +8,12 @@ fi
 
 echo "Installing essential packages..."
 sudo apt update
-sudo apt install -y build-essential git curl wget zsh tmux terminator unzip
+sudo apt install -y build-essential git curl wget zsh tmux terminator unzip python3-nautilus
 wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
+mkdir -p ./.config/terminator
+wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/terminator/config -O ./.config/terminator/config
+sudo curl -lo /usr/share/nautilus-python/extensions/open-terminator.py  https://raw.githubusercontent.com/timhughes/nautilus-open-terminator/master/open-terminator.py
+
 # Check if running in WSL
 if grep -qi microsoft /proc/version; then
     echo "WSL environment detected. Configuring WSL..."
@@ -35,11 +39,18 @@ else
     sudo cp ./JetBrainsMono/JetBrainsMonoNerdFont-Bold.ttf /usr/share/fonts/
     rm -rf ./JetBrainsMono
     rm ./JetBrainsMono.zip
-
-    mkdir -p ./.config/terminator
-    wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/terminator/config -O ./.config/terminator/config
     
     LANG=C xdg-user-dirs-update --force
+    cp -al ~/デスクトップ/* ~/Desktop/
+    cp -al ~/ダウンロード/* ~/Downloads/
+    cp -al ~/テンプレート/* ~/Templates/
+    cp -al ~/公開/* ~/Public/
+    cp -al ~/ドキュメント/* ~/Documents/
+    cp -al ~/音楽/* ~/Music/
+    cp -al ~/画像/* ~/Pictures/
+    cp -al ~/ビデオ/* ~/Videos/
+    rm -rf デスクトップ ダウンロード テンプレート 公開 ドキュメント 音楽 画像 ビデオ
+    wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/master/install.sh | bash
 fi
 
 sudo add-apt-repository ppa:appimagelauncher-team/stable -y

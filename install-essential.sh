@@ -20,13 +20,20 @@ if grep -qi microsoft /proc/version; then
     echo -e "[interop]\nappendWindowsPath = false" | sudo tee -a /etc/wsl.conf
     echo "WSL configuration added. Please restart WSL to apply changes."
 else
-    echo "Regular Linux environment detected. Installing desktop applications..."
-    
-    wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-    sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-    sudo apt update
-    sudo apt install -y code
+     echo "Regular Linux environment detected. Installing desktop applications..."
+     set -e
+     sudo install -m 0755 -d /etc/apt/keyrings
+     wget -qO- https://packages.microsoft.com/keys/microsoft.asc \
+    | gpg --dearmor \
+    | sudo tee /etc/apt/keyrings/microsoft.gpg >/dev/null
+     echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" \
+       | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
+ 
+    sudo apt-get -yq update
+    sudo env DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=a UCF_FORCE_CONFNEW=1 \
+    apt-get -yq install code
 
+    
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrom-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
     curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/googlechrom-keyring.gpg
     sudo apt update
@@ -82,6 +89,31 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 git config --global user.name hirobon1690
 git config --global user.email 58695125+hirobon1690@users.noreply.github.com
 git config --global init.defaultBranch main
+
+sudo gpasswd -a $USER input
+echo 'KERNEL=="uinput", GROUP="input", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/input.rules
+wget https://github.com/xremap/xremap/releases/download/v0.14.1/xremap-linux-x86_64-x11.zip
+unzip xremap-linux-x86_64-x11.zip
+sudo mv ./xremap /usr/bin/
+rm ./xremap-linux-x86_64-x11.zip
+wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/xremap.yml ~/.xremap.yml
+mkdir -p ~/.config/systemd/user && cat <<'EOF' > ~/.config/systemd/user/xremap.service
+[Unit]
+Description=xremap
+
+[Service]
+KillMode=process
+ExecStart=/usr/bin/xremap --watch /home/hirobon/xremap.yml
+Type=simple
+Restart=always
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=default.target
+EOF
+
+systemctl --user enable xremap.service
+systemctl --user start xremap.service
 
 echo "Setting zsh as default shell..."
 sudo chsh -s $(which zsh) $USER

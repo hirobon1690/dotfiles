@@ -100,7 +100,7 @@ wget https://github.com/xremap/xremap/releases/download/v0.14.1/xremap-linux-x86
 unzip xremap-linux-x86_64-x11.zip
 sudo mv ./xremap /usr/bin/
 rm ./xremap-linux-x86_64-x11.zip
-wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/xremap.yml ~/.xremap.yml
+wget -O ~/.xremap.yml https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.xremap.yml 
 mkdir -p ~/.config/systemd/user && cat <<'EOF' > ~/.config/systemd/user/xremap.service
 [Unit]
 Description=xremap

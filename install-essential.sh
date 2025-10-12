@@ -11,7 +11,7 @@ sudo apt update
 sudo apt install -y build-essential git curl wget zsh tmux terminator unzip python3-nautilus
 wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
 mkdir -p ./.config/terminator
-wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/terminator/config -O ./.config/terminator/config
+wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/terminator/config ./.config/terminator/config
 sudo curl -lo /usr/share/nautilus-python/extensions/open-terminator.py  https://raw.githubusercontent.com/timhughes/nautilus-open-terminator/master/open-terminator.py
 
 # Check if running in WSL

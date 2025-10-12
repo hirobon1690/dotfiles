@@ -8,11 +8,12 @@ fi
 
 echo "Installing essential packages..."
 sudo apt update
-sudo apt install -y build-essential git curl wget zsh tmux terminator unzip python3-nautilus
+sudo apt install -y build-essential git curl wget zsh tmux terminator unzip python3-nautilus flatpak
 wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
 mkdir -p ./.config/terminator
 wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/terminator/config ./.config/terminator/config
 sudo curl -lo /usr/share/nautilus-python/extensions/open-terminator.py  https://raw.githubusercontent.com/timhughes/nautilus-open-terminator/master/open-terminator.py
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Check if running in WSL
 if grep -qi microsoft /proc/version; then
@@ -67,11 +68,13 @@ else
     cp -al ~/画像/* ~/Pictures/
     cp -al ~/ビデオ/* ~/Videos/
     rm -rf デスクトップ ダウンロード テンプレート 公開 ドキュメント 音楽 画像 ビデオ
+    
     wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/master/install.sh | bash
+    sudo apt install gnome-shell-extensions gnome-software-plugin-flatpak gnome-tweaks
 fi
 
-sudo add-apt-repository ppa:appimagelauncher-team/stable -y
-sudo apt install -y appimagelauncher
+flatpak install flathub it.mijorus.gearlever
+flatpak install flathub com.usebottles.bottles
 
 sudo apt install -y nodejs npm
 sudo npm -g install n

@@ -13,7 +13,7 @@ wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmu
 mkdir -p ./.config/terminator
 wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/terminator/config ./.config/terminator/config
 sudo curl -lo /usr/share/nautilus-python/extensions/open-terminator.py  https://raw.githubusercontent.com/timhughes/nautilus-open-terminator/master/open-terminator.py
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Check if running in WSL
 if grep -qi microsoft /proc/version; then
@@ -75,6 +75,7 @@ fi
 
 flatpak install flathub it.mijorus.gearlever
 flatpak install flathub com.usebottles.bottles
+flatpak override com.usebottles.bottles --user --filesystem=xdg-data/applications
 
 sudo apt install -y nodejs npm
 sudo npm -g install n

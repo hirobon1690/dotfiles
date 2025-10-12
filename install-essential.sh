@@ -109,7 +109,7 @@ Description=xremap
 
 [Service]
 KillMode=process
-ExecStart=/usr/bin/xremap --watch /home/hirobon/xremap.yml
+ExecStart=/usr/bin/xremap --watch %h/.xremap.yml
 Type=simple
 Restart=always
 Environment=DISPLAY=:0

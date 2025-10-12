@@ -59,14 +59,14 @@ else
     rm ./Inter-4.1.zip
     
     LANG=C xdg-user-dirs-update --force
-    cp -al ~/デスクトップ/* ~/Desktop/
-    cp -al ~/ダウンロード/* ~/Downloads/
-    cp -al ~/テンプレート/* ~/Templates/
-    cp -al ~/公開/* ~/Public/
-    cp -al ~/ドキュメント/* ~/Documents/
-    cp -al ~/音楽/* ~/Music/
-    cp -al ~/画像/* ~/Pictures/
-    cp -al ~/ビデオ/* ~/Videos/
+    cp -al ~/デスクトップ/. ~/Desktop/
+    cp -al ~/ダウンロード/. ~/Downloads/
+    cp -al ~/テンプレート/. ~/Templates/
+    cp -al ~/公開/. ~/Public/
+    cp -al ~/ドキュメント/. ~/Documents/
+    cp -al ~/音楽/. ~/Music/
+    cp -al ~/画像/. ~/Pictures/
+    cp -al ~/ビデオ/. ~/Videos/
     rm -rf デスクトップ ダウンロード テンプレート 公開 ドキュメント 音楽 画像 ビデオ
     
     wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/master/install.sh | bash

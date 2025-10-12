@@ -70,7 +70,7 @@ else
     rm -rf デスクトップ ダウンロード テンプレート 公開 ドキュメント ミュージック ピクチャ ビデオ
     
     wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/master/install.sh | bash
-    sudo apt install gnome-shell-extensions gnome-software-plugin-flatpak gnome-tweaks
+    sudo apt install gnome-shell-extensions gnome-software-plugin-flatpak gnome-tweaks -y
 fi
 
 flatpak install flathub it.mijorus.gearlever -y

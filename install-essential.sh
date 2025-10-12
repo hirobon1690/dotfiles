@@ -73,8 +73,8 @@ else
     sudo apt install gnome-shell-extensions gnome-software-plugin-flatpak gnome-tweaks -y
 fi
 
-flatpak install flathub it.mijorus.gearlever -y
-flatpak install flathub com.usebottles.bottles -y
+flatpak install --assumeyes --noninteractive --or-update flathub it.mijorus.gearlever -y
+flatpak install --assumeyes --noninteractive --or-update flathub com.usebottles.bottles -y
 flatpak override com.usebottles.bottles --user --filesystem=xdg-data/applications
 
 sudo apt install -y nodejs npm

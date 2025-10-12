@@ -65,9 +65,9 @@ else
     cp -al ~/公開/. ~/Public/
     cp -al ~/ドキュメント/. ~/Documents/
     cp -al ~/ミュージック/. ~/Music/
-    cp -al ~/画像/. ~/Pictures/
+    cp -al ~/ピクチャ/. ~/Pictures/
     cp -al ~/ビデオ/. ~/Videos/
-    rm -rf デスクトップ ダウンロード テンプレート 公開 ドキュメント 音楽 画像 ビデオ
+    rm -rf デスクトップ ダウンロード テンプレート 公開 ドキュメント ミュージック ピクチャ ビデオ
     
     wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/master/install.sh | bash
     sudo apt install gnome-shell-extensions gnome-software-plugin-flatpak gnome-tweaks

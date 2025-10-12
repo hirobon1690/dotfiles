@@ -64,7 +64,7 @@ else
     cp -al ~/テンプレート/. ~/Templates/
     cp -al ~/公開/. ~/Public/
     cp -al ~/ドキュメント/. ~/Documents/
-    cp -al ~/音楽/. ~/Music/
+    cp -al ~/ミュージック/. ~/Music/
     cp -al ~/画像/. ~/Pictures/
     cp -al ~/ビデオ/. ~/Videos/
     rm -rf デスクトップ ダウンロード テンプレート 公開 ドキュメント 音楽 画像 ビデオ
@@ -73,8 +73,8 @@ else
     sudo apt install gnome-shell-extensions gnome-software-plugin-flatpak gnome-tweaks
 fi
 
-flatpak install flathub it.mijorus.gearlever
-flatpak install flathub com.usebottles.bottles
+flatpak install flathub it.mijorus.gearlever -y
+flatpak install flathub com.usebottles.bottles -y
 flatpak override com.usebottles.bottles --user --filesystem=xdg-data/applications
 
 sudo apt install -y nodejs npm

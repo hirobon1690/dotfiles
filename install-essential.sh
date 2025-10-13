@@ -8,7 +8,7 @@ fi
 
 echo "Installing essential packages..."
 sudo apt update
-sudo apt install -y build-essential git curl wget zsh tmux terminator unzip python3-nautilus flatpak python3-pip python3-venv
+sudo apt install -y build-essential git curl wget zsh tmux terminator unzip python3-nautilus flatpak python3-pip python3-venv pipx
 wget -qO- https://astral.sh/uv/install.sh | sh
 wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
 mkdir -p ./.config/terminator

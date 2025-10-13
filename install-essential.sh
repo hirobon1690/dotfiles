@@ -8,7 +8,7 @@ fi
 
 echo "Installing essential packages..."
 sudo apt update
-sudo apt install -y build-essential git curl wget zsh tmux terminator unzip python3-nautilus flatpak python3-pip python3-venv pipx
+sudo apt install -y build-essential git curl wget zsh tmux terminator unzip python3-nautilus flatpak python3-pip python3-venv pipx 
 wget -qO- https://astral.sh/uv/install.sh | sh
 wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
 mkdir -p ./.config/terminator
@@ -71,7 +71,8 @@ else
     rm -rf デスクトップ ダウンロード テンプレート 公開 ドキュメント ミュージック ピクチャ ビデオ
     
     wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/master/install.sh | bash
-    sudo apt install gnome-shell-extensions gnome-software-plugin-flatpak gnome-tweaks -y
+    sudo apt install gnome-shell-extensions gnome-software-plugin-flatpak gnome-tweaks gnome-browser-connector -y
+    pipx install gnome-extensions-cli 
 fi
 
 flatpak install --assumeyes --noninteractive --or-update flathub it.mijorus.gearlever -y

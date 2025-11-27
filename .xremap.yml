@@ -1,5 +1,43 @@
 modmap:
   - name: JP-keys
     remap:
-      Alt_R: Muhenkan    # 右Alt → 無変換
-      COMPOSE: Henkan       # Menu → 変換
+      Alt_R: Muhenkan
+      COMPOSE:
+        held: Compose
+        alone: Henkan
+      BackSlash: [Muhenkan, BackSlash]
+
+virtual_modifiers:
+  - Compose
+
+keymap:
+  - name: "Compose-as-Ctrl"
+    remap:
+      Compose-a: C-a
+      Compose-b: C-b
+      Compose-c: C-c
+      Compose-d: C-d
+      Compose-e: end
+      Compose-f: C-f
+      Compose-g: C-g
+      Compose-h: C-h
+      Compose-i: C-i
+      Compose-j: C-j
+      Compose-k: C-k
+      Compose-l: C-l
+      Compose-m: C-m
+      Compose-n: C-n
+      Compose-o: C-o
+      Compose-p: C-p
+      Compose-q: C-q
+      Compose-r: C-r
+      Compose-s: C-s
+      Compose-t: C-t
+      Compose-u: C-u
+      Compose-v: C-v
+      Compose-w: Home
+      Compose-x: C-x
+      Compose-y: C-y
+      Compose-z: C-z
+      Compose-Backspace: Delete
+      Compose-Enter: C-Enter

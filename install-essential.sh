@@ -76,6 +76,7 @@ fi
 
 flatpak install --assumeyes --noninteractive --or-update flathub it.mijorus.gearlever -y
 flatpak install --assumeyes --noninteractive --or-update flathub com.usebottles.bottles -y
+flatpak install --assumeyes --noninteractive --or-update https://dl.flathub.org/repo/appstream/io.missioncenter.MissionCenter.flatpakref -y
 flatpak override com.usebottles.bottles --user --filesystem=xdg-data/applications
 
 sudo apt install -y nodejs npm

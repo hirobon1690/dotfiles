@@ -8,7 +8,7 @@ fi
 
 echo "Installing essential packages..."
 sudo apt update
-sudo apt install -y build-essential git curl wget zsh tmux terminator unzip python3-nautilus flatpak python3-pip python3-venv ffmpeg
+sudo apt install -y build-essential git curl wget zsh tmux terminator unzip python3-nautilus flatpak python3-pip python3-venv ffmpeg gh
 wget -qO- https://astral.sh/uv/install.sh | sh
 wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
 mkdir -p ./.config/terminator
@@ -60,15 +60,14 @@ else
     rm ./Inter-4.1.zip
     
     LANG=C xdg-user-dirs-update --force
-    cp -al ~/デスクトップ/. ~/Desktop/
-    cp -al ~/ダウンロード/. ~/Downloads/
-    cp -al ~/テンプレート/. ~/Templates/
-    cp -al ~/公開/. ~/Public/
-    cp -al ~/ドキュメント/. ~/Documents/
-    cp -al ~/ミュージック/. ~/Music/
-    cp -al ~/ピクチャ/. ~/Pictures/
-    cp -al ~/ビデオ/. ~/Videos/
-    rm -rf デスクトップ ダウンロード テンプレート 公開 ドキュメント ミュージック ピクチャ ビデオ
+    [ -d "$HOME/デスクトップ" ] && mkdir -p "$HOME/Desktop"    && cp -al "$HOME/デスクトップ/." "$HOME/Desktop/"    && rm -rf "$HOME/デスクトップ"
+    [ -d "$HOME/ダウンロード" ] && mkdir -p "$HOME/Downloads"  && cp -al "$HOME/ダウンロード/." "$HOME/Downloads/"  && rm -rf "$HOME/ダウンロード"
+    [ -d "$HOME/テンプレート" ] && mkdir -p "$HOME/Templates"  && cp -al "$HOME/テンプレート/." "$HOME/Templates/"  && rm -rf "$HOME/テンプレート"
+    [ -d "$HOME/公開" ]       && mkdir -p "$HOME/Public"     && cp -al "$HOME/公開/." "$HOME/Public/"          && rm -rf "$HOME/公開"
+    [ -d "$HOME/ドキュメント" ] && mkdir -p "$HOME/Documents" && cp -al "$HOME/ドキュメント/." "$HOME/Documents/" && rm -rf "$HOME/ドキュメント"
+    [ -d "$HOME/ミュージック" ] && mkdir -p "$HOME/Music"     && cp -al "$HOME/ミュージック/." "$HOME/Music/"     && rm -rf "$HOME/ミュージック"
+    [ -d "$HOME/ピクチャ" ]   && mkdir -p "$HOME/Pictures"   && cp -al "$HOME/ピクチャ/." "$HOME/Pictures/"     && rm -rf "$HOME/ピクチャ"
+    [ -d "$HOME/ビデオ" ]     && mkdir -p "$HOME/Videos"     && cp -al "$HOME/ビデオ/." "$HOME/Videos/"         && rm -rf "$HOME/ビデオ"
     
     wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/master/install.sh | bash
     sudo apt install gnome-shell-extensions gnome-software-plugin-flatpak gnome-tweaks gnome-browser-connector -y
@@ -85,12 +84,12 @@ sudo n stable
 sudo apt purge -y nodejs npm
 sudo apt autoremove -y
 
-type -p curl >/dev/null || sudo apt install curl -y
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-&& sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-&& sudo apt update \
-&& sudo apt install gh -y
+# type -p curl >/dev/null || sudo apt install curl -y
+# curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+# && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+# && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+# && sudo apt update \
+# && sudo apt install gh -y
 
 git config --global user.name hirobon1690
 git config --global user.email 58695125+hirobon1690@users.noreply.github.com

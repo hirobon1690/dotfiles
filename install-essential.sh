@@ -91,9 +91,11 @@ sudo apt autoremove -y
 # && sudo apt update \
 # && sudo apt install gh -y
 
-git config --global user.name hirobon1690
-git config --global user.email 58695125+hirobon1690@users.noreply.github.com
-git config --global init.defaultBranch main
+if [[ " $* " == *" --private "* ]]; then
+   git config --global user.name hirobon1690
+   git config --global user.email 58695125+hirobon1690@users.noreply.github.com
+   git config --global init.defaultBranch main
+fi
 
 sudo gpasswd -a $USER input
 echo 'KERNEL=="uinput", GROUP="input", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/input.rules

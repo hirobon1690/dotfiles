@@ -10,7 +10,7 @@ echo "Installing essential packages..."
 sudo apt update
 sudo apt install -y build-essential git curl wget zsh tmux terminator unzip python3-nautilus flatpak python3-pip python3-venv ffmpeg gh
 wget -qO- https://astral.sh/uv/install.sh | sh
-wget https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
+wget -O ~/.tmux.conf https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/.tmux.conf
 mkdir -p ./.config/terminator
 wget -O ~/.config/terminator/config https://raw.githubusercontent.com/hirobon1690/dotfiles/refs/heads/main/terminator/config
 sudo curl -lo /usr/share/nautilus-python/extensions/open-terminator.py  https://raw.githubusercontent.com/timhughes/nautilus-open-terminator/master/open-terminator.py

@@ -1,0 +1,4 @@
+shell-integration-features = ssh-env,ssh-terminfo
+theme = Adwaita Dark
+confirm-close-surface = false
+background-opacity = 0.5

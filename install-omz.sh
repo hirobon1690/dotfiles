@@ -4,7 +4,7 @@ echo "Setting zsh as default shell..."
 sudo chsh -s $(which zsh) $USER
 
 # Oh My Zshを非対話的にインストール
-echo "Installing Oh My Zsh..."
+echo "Installing Oh My Zsh and extensions..."
 export RUNZSH=no
 export CHSH=no
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -19,6 +19,10 @@ if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlightin
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
 
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab" ]; then
+    git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+fi
+
 # .zshrcが存在することを確認してから設定を変更
 if [ -f "$HOME/.zshrc" ]; then
     echo "Configuring zsh plugins and theme..."
@@ -28,6 +32,9 @@ if [ -f "$HOME/.zshrc" ]; then
     fi
     if ! grep -q "zsh-syntax-highlighting" "$HOME/.zshrc"; then
         sed -i '/^plugins=(/ s/)/ zsh-syntax-highlighting)/' "$HOME/.zshrc"
+    fi
+    if ! grep -q "fzf-tab" "$HOME/.zshrc"; then
+        sed -i '/^plugins=(/ s/)/ fzf-tab)/' "$HOME/.zshrc"
     fi
     
     # オートサジェスト設定を追加（重複回避）
